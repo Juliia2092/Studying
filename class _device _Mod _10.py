@@ -26,6 +26,10 @@ class CoffeeMachine(Device):
         self.volume = kwargs.get('volume') if kwargs.get('volume') else self.volume
         self.turns = kwargs.get('turns') if kwargs.get('turns') else self.turns
 
+    @staticmethod
+    def coffee_make(time):
+         print(f'Your coffee will be ready in {time} minutes')
+
     def __repr__(self):
         return f'Name:{self.name} type:{self.type} materials:{self.materials} size:{self.size} volume:{self.volume} ' \
                f'turns:{self.turns}'
@@ -40,6 +44,10 @@ class Blender (Device):
         self.volume = kwargs.get('volume') if kwargs.get('volume') else self.volume
         self.turns = kwargs.get('turns') if kwargs.get('turns') else self.turns
 
+    @staticmethod
+    def blender_works(time):
+        print(f'Blender will make your smoothie in {time} minutes')
+
     def __repr__(self):
         return f'Name:{self.name} type:{self.type} materials:{self.materials} size:{self.size} volume:{self.volume} ' \
                f'turns:{self.turns}'
@@ -53,6 +61,16 @@ class MeatGrinder(Device):
         self.size = kwargs.get('size') if kwargs.get('size') else self.size
         self.volume = kwargs.get('volume') if kwargs.get('volume') else self.volume
         self.turns = kwargs.get('turns') if kwargs.get('turns') else self.turns
+
+    @staticmethod
+    def grinder_works(time):
+        user_request = input('Grind or slice?: ')
+        if user_request == 'grind':
+            print(f'The meat grinder will grind the meat in {time} minutes')
+        elif user_request == 'slice':
+            print(f'The meat grinder will slice the meat in {time} seconds')
+        else:
+            print(f"There's no such function")
 
     def __repr__(self):
         return f'Name:{self.name} type:{self.type} materials:{self.materials} size:{self.size} volume:{self.volume} ' \
@@ -71,6 +89,8 @@ meat_grinder = MeatGrinder(name='Meat Grinder', type='Appliances', materials='pl
 print(coffee_machine)
 print(blender)
 print(meat_grinder)
-
 blender.update_info_blender(turns='3000')
 print(blender)
+coffee_machine.coffee_make(time=2)
+blender.blender_works(time=5)
+meat_grinder.grinder_works(time=10)
